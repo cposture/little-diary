@@ -5,6 +5,7 @@
 以 root 身份安装 Node.js
 
 在 Linux 下如何切换用户可以参考：https://blog.csdn.net/qq_32211827/article/details/54292304
+
 在 Linux 下如何安装软件可以参考：https://www.cnblogs.com/qiujun/p/6840984.html
 
 ```shell
