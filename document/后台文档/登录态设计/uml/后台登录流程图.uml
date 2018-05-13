@@ -1,0 +1,19 @@
+@startuml
+
+note right:登录
+start
+:校验参数合法性;
+:(openid+appid+wx_skey+acc_token)存入redis缓存，并设置过期时间，返回BASE64(AES(redis_key))，作为自定义登录态;
+
+stop
+
+start
+note right:验证登录态
+:校验参数合法性;
+:对skey进行解密得到redis_key，解密失败返回无效skey;
+:根据redis_key取得session数据，判断用户的openid和appid是否与session一致，不一致返回无效skey;
+:验证成功，返回登录成功;
+
+stop
+
+@enduml

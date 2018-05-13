@@ -1,0 +1,9 @@
+小程序 -> 小程序 : wx.login() 获取 code
+小程序 -> login : wx.request() 发送 code
+login -> 微信接口服务: 登录凭证校验（appid+appsecret+code）
+微信接口服务 -> login : 返回 wx_skey + openid
+login -> login : (openid+appid+wx_skey+acc_token)存入redis缓存，并设置过期时间，返回BASE64(AES(redis_key))，作为自定义登录态
+小程序 -> 小程序 : 自定义登录态存入 storage
+小程序 -> 其他接口 : wx.request() 发起业务请求，携带自定义登录态
+其他接口 -> 其他接口 : 通过自定义登录态查询得到openid和session_key，校验用户传入的openid与查询得到openid比较是否一致
+其他接口 -> 小程序 : 返回业务数据
